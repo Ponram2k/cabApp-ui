@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Login</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<h1 class="heading">CAB BOOKING</h1>
+	<div class="login">
+		<div class="display" >
+			<h2>Login</h1>
+			<form for="login" class="frmalign" onsubmit="login()">
+				<div class="content">
+					<lable>Mobile No:</lable>
+				</div>
+				<div class="content1">
+					<input type="text" name="mobileno" id="MobileNo" required autofocus/>
+				</div>
+				<div class="content">
+					<label>Password</label>
+				</div>
+				<div class="content1">
+					<input type="password" id="password" required/>
+				</div>
+				<div class="content1">
+					<input class="btn" type="submit" id="Submit" />
+				</div>
+			</form>
+		</div>
+	</div>
+	<script src = "Login.js"></script>
+	<script>
+		function login(){
+			event.preventDefault();
+			let mobilenmbr = document.querySelector("#MobileNo").value;
+			let password = document.querySelector("#password").value;
+			let ans = isValid(mobilenmbr,password);
+			if(ans == true){
+				alert("Login succesfuly");
+				window.location.href = "Cabtype.html";
+			}
+		}
+	</script>
+</body>
+
+</html>

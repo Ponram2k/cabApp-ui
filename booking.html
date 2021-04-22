@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <title>Booking</title>
+</head>
+
+<body>
+    <h1 class="heading">Booking</h1>
+    <div style="margin-left: 30%;">
+        <div class="content">Note:
+            <ul style="list-style-type:disc;">
+                <li>If you select time between 15 to 17 we'll charge additional charge of 1.25%</li>
+                <li>If your a senior citizend amount will reduced upto 50% </li>
+            </ul>
+        </div>
+        <form onsubmit="bookTime()">
+            <div class="content">
+                <label for="gender">Gender</label>
+                <input id="gender" type="radio" name="gender" value="M" required/>Male
+                <input id="gender" type="radio" name="gender" value="F" required/>Female
+            </div>
+            <div class="content">
+                <label for="dob">Date Of Birth</label>
+                <input type="date" name="dob" id="dob" required/>
+            </div>
+            <div class="content">
+                <label for="getDate">Booking Date:</label>
+                <input id="jdate" type="date" class="date" required/>
+            </div>
+            <div class="content">
+                <label for="getTime">Pickup Time:</label>
+                <input id="jtime" type="time" class="time" required/>
+            </div>
+            <div class="content">
+                <input id="submit" type="submit" class="" value="Book" />
+            </div>
+        </form>
+    </div>
+    <div class="book">
+            <div id="title" class="disp"></div>
+            <div id="cbtyp" class="content2">
+            </div>
+            <div id="klmtr" class="content2">
+            </div>
+            <div id="amnt" class="content2">
+            </div>
+            <div id="snrctizn" class="content2">
+            </div>
+            <div id="peakhr" class="content2">
+            </div>
+            <div id="totamnt" class="content2">
+            </div>
+        </div>
+    <script src="Peakhr.js"></script>
+    <script src="User.js"></script>
+    <script src="CabAmount.js"></script>
+    <script src="GstCalculate.js"></script>
+    <script src="DynamicDate.js"></script>
+    <script>
+        function bookTime() {
+            event.preventDefault();
+            let gst = 7;
+            let peakPercentage = 1.25;
+            document.querySelector("#title").innerHTML = "Bill";
+            let cabTyp = window.localStorage.getItem("cab");
+            document.querySelector("#cbtyp").innerHTML = "Cab Type:" + cabTyp;
+            let klo = window.localStorage.getItem("km1");
+            document.querySelector("#klmtr").innerHTML = "Kilo Meter:" + klo ;
+            let amount = cabAmnt(cabTyp, klo);
+            document.querySelector("#amnt").innerHTML = "Bill Amount:" + amount;
+            let dt = parseInt(document.querySelector("#dob").value.substr(0, 4));
+            if (isSeniorCitizen(dt)) {
+                amount = getSeniorCitizenAmount(amount);
+                document.querySelector("#snrctizn").innerHTML = "For senior citizen the amount is reduced upto 50%:" + amount;
+            }
+            let tm = parseInt(document.querySelector("#jtime").value.substr(0, 2));
+            if (peakHour(tm)) {
+                amount = peakHourAmount(amount, peakPercentage);
+                document.querySelector("#peakhr").innerHTML = "Peak hour charges:" + amount;
+            }
+            amount = calculateGst(amount, gst);
+            document.querySelector("#totamnt").innerHTML = "Total amount with 7% gst:" + Math.round(amount);
+        }
+        onLoad();
+    </script>
+</body>
+
+</html>

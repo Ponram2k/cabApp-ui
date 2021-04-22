@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Cab type</title>
+	<link rel="stylesheet" href="Cabtype.css">
+	<link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+	<h1 class="heading">Cab Type</h1>
+	<div class="tbl">
+		<table>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Prize per km</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>MICRO</td>
+					<td>10</td>
+				</tr>
+				<tr>
+					<td>MINI</td>
+					<td>15</td>
+				</tr>
+				<tr>
+					<td>PRIME</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="cabfrm">
+		<form>
+			<div class="content">
+				<label>Select cab type</label>
+			</div>
+			<div>
+				<select class="sltcab" id="cabtyp" required>
+					<option selected disabled value="">--Select cab type--</option>
+					<option name="cab" id="cabtyp" value="Micro">Micro</option>
+					<option name="cab" id="cabtyp" value="mini">Mini</option>
+					<option name="cab" id="cabtyp" value="Prime">Prime</option>
+				</select>
+			</div>
+			<div class="content">
+				<label>Enter Km</label>
+			</div>
+			<div>
+				<input id="km" type="number" min=1 name="kilometer" placeholder="Enter the km" required/>
+			</div>
+			<div class="content">
+				<input class="btn" type="submit"  id="submit" onclick="cabType()" />
+			</div>
+		</form>
+	</div>
+	<script>
+		function cabType() {
+			event.preventDefault();
+			let cab = document.querySelector("#cabtyp").value;
+			let km1 = document.querySelector("#km").value;
+			window.localStorage.setItem("cab",cab);
+			window.localStorage.setItem("km1",km1);
+			window.location.href = "booking.html";			
+		}
+	</script>
+</body>
+
+</html>
