@@ -1,4 +1,4 @@
-function onLoad() {
+function getMinMaxDate() {
     let today = new Date();								//To get Current date
     let todayStr = today.toJSON().substring(0, 10);		//To convert date into string type
 
@@ -9,4 +9,10 @@ function onLoad() {
     document.querySelector("#jdate").setAttribute("min", todayStr);			//To select minimum date for user
     document.querySelector("#jdate").setAttribute("max", endDateStr);		//To select maximum date for user
 
+}
+
+function getTodayDate(){
+    let today = new Date();								
+    let todayStr = today.toJSON().substring(0, 10);
+    document.querySelector("#dob").setAttribute("max", todayStr);
 }
