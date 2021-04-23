@@ -42,25 +42,25 @@
         </form>
     </div>
     <div class="book">
-            <div id="title" class="disp"></div>
-            <div id="cbtyp" class="content2">
-            </div>
-            <div id="klmtr" class="content2">
-            </div>
-            <div id="amnt" class="content2">
-            </div>
-            <div id="snrctizn" class="content2">
-            </div>
-            <div id="peakhr" class="content2">
-            </div>
-            <div id="totamnt" class="content2">
-            </div>
+        <div id="title" class="disp"></div>
+        <div id="cbtyp" class="content2">
         </div>
+        <div id="klmtr" class="content2">
+        </div>
+        <div id="amnt" class="content2">
+        </div>
+        <div id="snrctizn" class="content2">
+        </div>
+        <div id="peakhr" class="content2">
+        </div>
+        <div id="totamnt" class="content2">
+        </div>
+    </div>
     <script src="Peakhr.js"></script>
     <script src="User.js"></script>
     <script src="CabAmount.js"></script>
     <script src="GstCalculate.js"></script>
-    <script src="DynamicDate.js"></script>
+    <script src="DateCalculation.js"></script>
     <script>
         function bookTime() {
             event.preventDefault();
@@ -70,7 +70,7 @@
             let cabTyp = window.localStorage.getItem("cab");
             document.querySelector("#cbtyp").innerHTML = "Cab Type:" + cabTyp;
             let klo = window.localStorage.getItem("km1");
-            document.querySelector("#klmtr").innerHTML = "Kilo Meter:" + klo ;
+            document.querySelector("#klmtr").innerHTML = "Kilo Meter:" + klo;
             let amount = cabAmnt(cabTyp, klo);
             document.querySelector("#amnt").innerHTML = "Bill Amount:" + amount;
             let dt = parseInt(document.querySelector("#dob").value.substr(0, 4));
@@ -86,7 +86,8 @@
             amount = calculateGst(amount, gst);
             document.querySelector("#totamnt").innerHTML = "Total amount with 7% gst:" + Math.round(amount);
         }
-        onLoad();
+        getMinMaxDate();
+        getTodayDate();
     </script>
 </body>
 
